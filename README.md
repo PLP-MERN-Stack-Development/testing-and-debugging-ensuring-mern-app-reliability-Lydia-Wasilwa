@@ -1,57 +1,148 @@
 # Testing and Debugging MERN Applications
 
-This assignment focuses on implementing comprehensive testing strategies for a MERN stack application, including unit testing, integration testing, and end-to-end testing, along with debugging techniques.
+This project demonstrates how to implement comprehensive testing strategies in a MERN stack application. It includes unit tests, integration tests, end-to-end tests, and debugging techniques used throughout the client and server environments.
 
-## Assignment Overview
+## Project Overview
 
-You will:
-1. Set up testing environments for both client and server
-2. Write unit tests for React components and server functions
-3. Implement integration tests for API endpoints
-4. Create end-to-end tests for critical user flows
-5. Apply debugging techniques for common MERN stack issues
+This project focuses on:
+1. Setting up testing environments for React (client) and Node.js/Express (server)
+2. Writing unit tests for components, utility functions, and server logic
+3. Creating integration tests for API endpoints
+4. Running end-to-end tests using Cypress
+5. Applying debugging techniques in both client and server
+6. Improving testing coverage and ensuring reliability
 
 ## Project Structure
 
 ```
 mern-testing/
-├── client/                 # React front-end
-│   ├── src/                # React source code
-│   │   ├── components/     # React components
-│   │   ├── tests/          # Client-side tests
-│   │   │   ├── unit/       # Unit tests
-│   │   │   └── integration/ # Integration tests
-│   │   └── App.jsx         # Main application component
-│   └── cypress/            # End-to-end tests
-├── server/                 # Express.js back-end
-│   ├── src/                # Server source code
-│   │   ├── controllers/    # Route controllers
-│   │   ├── models/         # Mongoose models
-│   │   ├── routes/         # API routes
-│   │   └── middleware/     # Custom middleware
-│   └── tests/              # Server-side tests
-│       ├── unit/           # Unit tests
-│       └── integration/    # Integration tests
-├── jest.config.js          # Jest configuration
-└── package.json            # Project dependencies
+├── README.md
+├── package.json                # root scripts to run client & server
+├── jest.config.js              # Jest configuration
+├── server/
+│   ├── package.json
+│   ├── src/
+│   │   ├── index.js            # starts server
+│   │   ├── app.js              # express app
+│   │   ├── controllers/
+│   │   │   ├── authController.js
+│   │   │   └── bugsController.js
+│   │   ├── models/
+│   │   │   └── Bug.js
+│   │   │   ├── User.js
+│   │   ├── routes/
+│   │   │   ├── auth.js
+│   │   │   └── bugs.js
+│   │   ├── middleware/
+│   │   │   ├── authMiddleware.js
+│   │   │   └── errorHandler.js
+│   │   └── utils/
+│   │   │   ├── auth.js
+│   │   │   └── validators.js   # unit-tested helper functions
+│   └── tests/
+│       ├── unit/
+│       │   ├──authController.test.js
+│       │   └── validators.test.js
+│       └── integration/
+│       │   ├── auth.intergration.test.js
+│       │   ├── bugs.integration.test.js
+│       └── └── posts.test.js
+└── client/
+    ├── package.json
+    ├── index.html
+    └── src/
+        ├── main.jsx
+        ├── App.jsx
+        ├── api.js              # API wrappers
+        ├── components/
+        │   ├── BugForm.jsx
+        │   ├── BugList.jsx
+        │   ├── BugItem.jsx
+        │   └── ErrorBoundary.jsx
+        └── __tests__/
+        │   ├── BugForm.test.jsx
+        │   └── BugList.integration.test.jsx
+        └── cypress/            
+
+
 ```
 
-## Getting Started
+## Installation & Setup
+1. Clone the Repository
+2. Install Server Dependencies
+   ```
+   cd server
+   npm install
+   ```
+3. Install Client Dependencies
+   ```
+   cd ../client
+   npm install
+   ```
+4. Start the Application
+   ```
+   npm run dev
+   ```
+5. Set up the test database:   
+# In the server directory
+   ```
+   npm run setup-test-db
+   ```
+6. Run the tests:
+   ```
+   # Run all tests
+   npm test
+   
+   # Run only unit tests
+   npm run test:unit
+   
+   # Run only integration tests
+   npm run test:integration
+   
+   # Run only end-to-end tests
+   npm run test:e2e
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week6-Assignment.md` file
-4. Explore the starter code and existing tests
-5. Complete the tasks outlined in the assignment
+## Testing Approach & Coverage Explanation
+✔ Unit Testing
+✔ Integration Testing
+✔ End-to-End Testing
+✔ Code Coverage
+Run coverage
+```
+npm test -- --coverage
+```
 
-## Files Included
+## Debugging Techniques Used
 
-- `Week6-Assignment.md`: Detailed assignment instructions
-- Starter code for a MERN application with basic test setup:
-  - Sample React components with test files
-  - Express routes with test files
-  - Jest and testing library configurations
-  - Example tests for reference
+### Client-Side Debugging
+
+ Developer Tools
+- Logging using console.log() for component state and props
+- Error boundaries to catch rendering issues
+- Mock API debugging using Testing Library debug helpers
+
+### Server-Side Debugging
+
+- Node.js inspector (node --inspect)
+- Logging middleware for API requests
+- ErrorHandler middleware for tracking exceptions
+- MongoDBMemoryServer that helps isolate DB errors during tests
+
+### Cypress Debugging
+
+- .debug() and .pause() commands
+- Automatic DOM snapshots
+- Network request logging and failure tracing
+
+
+## Screenshots
+### Server-side tests
+![npm test ](client/src/assets/test1.PNG)
+![npm run test:unit ](client/src/assets/test2.PNG)
+![test:integration ](client/src/assets/test3.PNG)
+![test:e2e](client/src/assets/test4.PNG)
+
+### Client-side tests
 
 ## Requirements
 
@@ -67,16 +158,6 @@ mern-testing/
 - Supertest: HTTP assertions for API testing
 - Cypress/Playwright: End-to-end testing framework
 - MongoDB Memory Server: In-memory MongoDB for testing
-
-## Submission
-
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
-
-1. Complete all required tests (unit, integration, and end-to-end)
-2. Achieve at least 70% code coverage for unit tests
-3. Document your testing strategy in the README.md
-4. Include screenshots of your test coverage reports
-5. Demonstrate debugging techniques in your code
 
 ## Resources
 

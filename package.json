@@ -1,0 +1,14 @@
+{
+    "name": "mern-bug-tracker",
+    "private": true,
+    "scripts": {
+        "start:server": "cd server && npm run dev",
+        "start:client": "cd client && npm run dev",
+        "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
+        "test:server": "cd server && npm test",
+        "test:client": "cd client && npm test"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}
